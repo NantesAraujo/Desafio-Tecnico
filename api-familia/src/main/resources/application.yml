@@ -1,0 +1,21 @@
+server:
+  servlet:
+    context-path: /familia-service/v1
+  port: 9126
+
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:~/test
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate.ddl-auto: create-drop
+
+#spring.h2.console.enabled=true
+  #spring.h2.console.path=/h2
