@@ -1,7 +1,7 @@
 package br.com.familia.domain.entity;
 
 import br.com.familia.domain.enumerations.EnumTipo;
-import lombok.Getter;
+import br.com.familia.util.IdadeUtil;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,6 +21,10 @@ public class Pessoa extends BaseEntity {
 
     @Column
     private LocalDate dataDeNascimento;
+
+    public int idadeAtual(){
+        return IdadeUtil.calularIdade(this.dataDeNascimento);
+    }
 
     public String getNome() {
         return nome;

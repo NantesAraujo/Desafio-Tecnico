@@ -1,5 +1,6 @@
 package br.com.familia.domain.entity;
 
+import br.com.familia.domain.enumerations.EnumStatus;
 import br.com.familia.domain.enumerations.EnumTipo;
 import lombok.Getter;
 
@@ -22,10 +23,14 @@ public class Familia extends Pontuacao {
     @OneToMany(cascade = CascadeType.ALL,  orphanRemoval = true)
     private List<Renda> rendas;
 
-    private String status;
+    private EnumStatus status;
 
-    public long quantidadeDeDependentes(){
-        return this.pessoas.stream().filter(pessoa -> EnumTipo.Dependente.equals(pessoa.getTipo())).collect(Collectors.toList()).size();
+    public Pessoa buscarPretendenteFamiliar(){
+        return pessoas.stream().filter(pessoa -> EnumTipo.Pretendente.equals(pessoa.getTipo())).findFirst().get();
+    }
+
+    public List<Pessoa> DependentesFamiliar(){
+        return this.pessoas.stream().filter(pessoa -> EnumTipo.Dependente.equals(pessoa.getTipo())).collect(Collectors.toList());
     }
 
     public Double rendaTotal(){

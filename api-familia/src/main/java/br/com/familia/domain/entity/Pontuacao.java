@@ -8,8 +8,13 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public class Pontuacao extends BaseEntity {
 
-    private Long pontos;
+    private int pontos;
 
-    private Long quantidadeCriteriosAtendidos;
+    private int quantidadeCriteriosAtendidos;
+
+    public void adicionarPontuacao(int pontos){
+        this.pontos += pontos;
+        this.quantidadeCriteriosAtendidos++;
+    }
 
 }
