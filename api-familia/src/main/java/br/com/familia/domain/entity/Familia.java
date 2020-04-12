@@ -2,7 +2,6 @@ package br.com.familia.domain.entity;
 
 import br.com.familia.domain.enumerations.EnumStatus;
 import br.com.familia.domain.enumerations.EnumTipo;
-import lombok.Getter;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,7 +13,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Entity
-@Getter
 public class Familia extends Pontuacao implements Comparable<Familia> {
 
     @Column
@@ -44,6 +42,18 @@ public class Familia extends Pontuacao implements Comparable<Familia> {
             totalRenda += renda.getValor();
 
         return totalRenda;
+    }
+
+    public List<Pessoa> getPessoas() {
+        return pessoas;
+    }
+
+    public List<Renda> getRendas() {
+        return rendas;
+    }
+
+    public EnumStatus getStatus() {
+        return status;
     }
 
     @Override

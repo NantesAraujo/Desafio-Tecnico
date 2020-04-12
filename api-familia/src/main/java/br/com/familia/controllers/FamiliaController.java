@@ -1,6 +1,7 @@
 package br.com.familia.controllers;
 
 import br.com.familia.bo.familiaBO.interfaces.IFamiliaBO;
+import br.com.familia.client.interfaces.IContempladosService;
 import br.com.familia.domain.entity.Familia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,9 @@ public class FamiliaController {
     @Autowired
     private IFamiliaBO familiaBO;
 
+    @Autowired
+    private IContempladosService contempladosService;
+
     @PostMapping
     public ResponseEntity<?> cadastrarfamilias(@RequestBody List<Familia> familias){
         try {
@@ -26,7 +30,9 @@ public class FamiliaController {
 
             Collections.sort(familiaList);
 
-            return ResponseEntity.ok(familiaList);
+            String result = contempladosService.enviarFamiliasClassificadas(familias);
+
+            return ResponseEntity.ok(result);
         } catch (Exception e){
             System.out.println(e);
             return ResponseEntity.badRequest().body("Não foi possível cadastrar as familias");
