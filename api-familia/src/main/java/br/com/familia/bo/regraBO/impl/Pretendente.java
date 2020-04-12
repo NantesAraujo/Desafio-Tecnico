@@ -1,9 +1,9 @@
-package br.com.familia.domain.regras.impl;
+package br.com.familia.bo.regraBO.impl;
 
 import br.com.familia.domain.entity.Familia;
 import br.com.familia.domain.entity.Pessoa;
 import br.com.familia.domain.enumerations.EnumNivel;
-import br.com.familia.domain.regras.interfaces.IRegra;
+import br.com.familia.bo.regraBO.interfaces.IRegra;
 import br.com.familia.util.IdadeUtil;
 
 public class Pretendente implements IRegra {

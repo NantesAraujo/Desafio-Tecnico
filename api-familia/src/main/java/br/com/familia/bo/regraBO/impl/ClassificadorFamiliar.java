@@ -1,7 +1,7 @@
-package br.com.familia.domain.regras.impl;
+package br.com.familia.bo.regraBO.impl;
 
 import br.com.familia.domain.entity.Familia;
-import br.com.familia.domain.regras.interfaces.IRegra;
+import br.com.familia.bo.regraBO.interfaces.IRegra;
 
 import java.util.List;
 

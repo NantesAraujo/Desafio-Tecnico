@@ -1,12 +1,12 @@
-package br.com.familia.bo.imp;
+package br.com.familia.bo.familiaBO.impl;
 
-import br.com.familia.bo.interfaces.IFamiliaBO;
+import br.com.familia.bo.familiaBO.interfaces.IFamiliaBO;
 import br.com.familia.domain.entity.Familia;
-import br.com.familia.domain.regras.impl.ClassificadorFamiliar;
-import br.com.familia.domain.regras.impl.Dependente;
-import br.com.familia.domain.regras.impl.Pretendente;
-import br.com.familia.domain.regras.impl.RendaFamiliar;
-import br.com.familia.domain.regras.interfaces.IRegra;
+import br.com.familia.bo.regraBO.impl.ClassificadorFamiliar;
+import br.com.familia.bo.regraBO.impl.Dependente;
+import br.com.familia.bo.regraBO.impl.Pretendente;
+import br.com.familia.bo.regraBO.impl.RendaFamiliar;
+import br.com.familia.bo.regraBO.interfaces.IRegra;
 import br.com.familia.repository.FamiliaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

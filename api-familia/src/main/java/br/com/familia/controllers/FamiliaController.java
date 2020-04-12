@@ -1,9 +1,8 @@
 package br.com.familia.controllers;
 
-import br.com.familia.bo.interfaces.IFamiliaBO;
+import br.com.familia.bo.familiaBO.interfaces.IFamiliaBO;
 import br.com.familia.domain.entity.Familia;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
