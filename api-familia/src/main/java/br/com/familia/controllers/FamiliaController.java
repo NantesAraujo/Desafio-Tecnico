@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -22,7 +23,11 @@ public class FamiliaController {
     @PostMapping
     public ResponseEntity<?> cadastrarfamilias(@RequestBody List<Familia> familias){
         try {
-            return ResponseEntity.ok(familiaBO.cadastrarFamilias(familias));
+            List<Familia> familiaList = familiaBO.cadastrarFamilias(familias);
+
+            Collections.sort(familiaList);
+
+            return ResponseEntity.ok(familiaList);
         } catch (Exception e){
             System.out.println(e);
             return ResponseEntity.badRequest().body("Não foi possível cadastrar as familias");

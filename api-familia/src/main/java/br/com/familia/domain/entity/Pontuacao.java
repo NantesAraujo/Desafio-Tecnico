@@ -4,7 +4,6 @@ import lombok.Getter;
 
 import javax.persistence.MappedSuperclass;
 
-@Getter
 @MappedSuperclass
 public class Pontuacao extends BaseEntity {
 
@@ -17,4 +16,11 @@ public class Pontuacao extends BaseEntity {
         this.quantidadeCriteriosAtendidos++;
     }
 
+    public int getPontos() {
+        return pontos;
+    }
+
+    public int getQuantidadeCriteriosAtendidos() {
+        return quantidadeCriteriosAtendidos;
+    }
 }
