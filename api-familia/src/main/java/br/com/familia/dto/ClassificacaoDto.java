@@ -1,6 +1,5 @@
 package br.com.familia.dto;
 
-import br.com.familia.domain.entity.Familia;
 import br.com.familia.domain.enumerations.EnumStatus;
 
 import java.time.LocalDate;
@@ -18,12 +17,15 @@ public class ClassificacaoDto {
 
     private EnumStatus status;
 
-    public ClassificacaoDto(Familia familia) {
-        this.id = familia.getId();
-        this.quantidadeCriterio = familia.getQuantidadeCriteriosAtendidos();
-        this.pontuacaoTotal = familia.getPontos();
+    public ClassificacaoDto() {
+    }
+
+    public ClassificacaoDto(UUID id, int quantidadeCriteriosAtendidos, int pontos, EnumStatus status) {
+        this.id = id;
+        this.quantidadeCriterio = quantidadeCriteriosAtendidos;
+        this.pontuacaoTotal = pontos;
         this.dataSelecionada = LocalDate.now();
-        this.status = familia.getStatus();
+        this.status = status;
     }
 
     public UUID getId() {

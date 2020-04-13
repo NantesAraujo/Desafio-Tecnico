@@ -1,20 +1,29 @@
 package br.com.contemplados.controllers;
 
+import br.com.contemplados.bo.comtenplatosBO.interfaces.IContempladoBO;
 import br.com.contemplados.model.dto.ClassificacaoDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/contemplados")
 public class ContempladosController {
 
-    @PostMapping
-    public ResponseEntity<?> pinpong(@RequestBody List<ClassificacaoDto> classificacaoDtos){
-        return ResponseEntity.ok("Recebeu as familias ");
+    @Autowired
+    private IContempladoBO contempladoBO;
+
+    @RequestMapping(value = "/contemplados", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
+    public ResponseEntity<?> selecionarContemplados(@RequestBody List<ClassificacaoDto> classificacaoDtos){
+        try {
+            List<ClassificacaoDto> contemplados = contempladoBO.classifica(classificacaoDtos);
+            return ResponseEntity.ok().body(contemplados);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Não foi possível filtrar familias aptas ao benefício.");
+        }
     }
 }

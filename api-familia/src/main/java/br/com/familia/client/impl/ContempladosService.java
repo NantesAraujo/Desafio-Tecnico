@@ -15,13 +15,15 @@ public class ContempladosService implements IContempladosService {
     private static final String url = "http://localhost:9127/contemplados-service/v1";
 
     @Override
-    public String enviarFamiliasClassificadas(List<Familia> familias) {
+    public ClassificacaoDto[] enviarFamiliasClassificadas(List<Familia> familias) {
 
         List<ClassificacaoDto> classificacaoDtos = new ArrayList<>();
 
-        familias.forEach(familia -> classificacaoDtos.add(new ClassificacaoDto(familia)));
+        familias.forEach(familia -> classificacaoDtos.add(
+            new ClassificacaoDto(familia.getId(), familia.getQuantidadeCriteriosAtendidos(), familia.getPontos(), familia.getStatus()))
+        );
 
-        String response = new RestTemplate().postForObject(url + "/contemplados", classificacaoDtos, String.class);
+        ClassificacaoDto[] response = new RestTemplate().postForObject(url + "/contemplados", classificacaoDtos, ClassificacaoDto[].class);
         return response;
     }
 }
