@@ -1,5 +1,9 @@
 # Desafio-Tecnico
 
+### Estruta Do Projeto
+
+![proposta-desafio-tecnico](https://user-images.githubusercontent.com/7785892/79163498-958fc000-7db5-11ea-9b45-1f10126c2533.jpg)
+
 Este projeto foi desenvolvido utilizando um padrão de projeto SOLID onde temos uma classe ```ClassificadorFamiliar``` que possui como atributo uma interface como lista da seguinte maneita: ``` private List<IRegra> regras ```.
 
 Dessa forma, temo uma interface que terá alguém que a implementa. E para isso deleguei para classe ```Dependente.java``` ```Pretendente.java``` ```RendaFamiliar``` a implementação das regras separadamente pois estas classes implementam a interface ```ClassificadorFamiliar.java``` conforme ilustra a imagem a seguir:
