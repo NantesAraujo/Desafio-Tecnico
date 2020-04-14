@@ -1,8 +1,10 @@
 # Desafio-Tecnico
 
-### Estruta Do Projeto
+# Estruta Do Projeto
 
 ![proposta-desafio-tecnico](https://user-images.githubusercontent.com/7785892/79163498-958fc000-7db5-11ea-9b45-1f10126c2533.jpg)
+
+# Projeto API-FAMILIA
 
 Este projeto foi desenvolvido utilizando um padrão de projeto SOLID onde temos uma classe ```ClassificadorFamiliar``` que possui como atributo uma interface como lista da seguinte maneita: ``` private List<IRegra> regras ```.
 
@@ -47,6 +49,8 @@ Dessa forma, temo uma interface que terá alguém que a implementa. E para isso 
  - Onde primeiramente crio um lista de regras das quais quero utilizar. 
  - Depois na criação da Classe ```ClassificadorFamiliar``` passo as minhas regras desejadas. 
  - Logo mais, para cada objeto do tipo ```Familia``` eu chamo o método ```Classificada``` que conforme explicado logo acima, é quem invoca a implementação de cada regra especifíca dentro da classe ```Classificador```.
+
+# Projeto API-CONTEMPLADOS
 
 
 # Configurações necessário para rodar Projeto
