@@ -47,3 +47,28 @@ Dessa forma, temo uma interface que terá alguém que a implementa. E para isso 
  - Onde primeiramente crio um lista de regras das quais quero utilizar. 
  - Depois na criação da Classe ```ClassificadorFamiliar``` passo as minhas regras desejadas. 
  - Logo mais, para cada objeto do tipo ```Familia``` eu chamo o método ```Classificada``` que conforme explicado logo acima, é quem invoca a implementação de cada regra especifíca dentro da classe ```Classificador```.
+
+
+# Configurações necessário para rodar Projeto
+
+ * Java 8+
+ * Maven (versão utilizada 3.5.2
+ * Node JS
+ * Docker
+
+# Configurando Serviço ElaticSearch
+
+ * Dentro do diretório ```infra``` execute os seguintes comandos:
+
+ ```
+
+  //comando para subir o serviço do elasticSearch
+  docker-compose up
+
+  //comando necessario para criar o indice FAMILIAS (correspondente a tabela) no elasticSearch 
+  node create-indice-familias.js
+
+  //comando necessario para criar o indice CONTEMPLADOS (correspondente a tabela) no elasticSearch 
+  node create-indice-contemplados.js
+
+ ```
