@@ -6,7 +6,7 @@
 
 # Projeto API-FAMILIA
 
-Este projeto foi desenvolvido utilizando um padrão de projeto SOLID onde temos uma classe ```ClassificadorFamiliar``` que possui como atributo uma interface como lista da seguinte maneita: ``` private List<IRegra> regras ```.
+Este projeto foi desenvolvido utilizando um Design Patterns Projetos conhecido como SOLID, onde utilizei do conceito de 'Desenvolvimento Orientado a Interfaces'. Neste projeto temos uma classe ```ClassificadorFamiliar``` que possui como atributo uma Lista do tipo interface da seguinte maneita: ``` private List<IRegra> regras ```.
 
 Dessa forma, temo uma interface que terá alguém que a implementa. E para isso deleguei para classe ```Dependente.java``` ```Pretendente.java``` ```RendaFamiliar``` a implementação das regras separadamente pois estas classes implementam a interface ```ClassificadorFamiliar.java``` conforme ilustra a imagem a seguir:
 
@@ -48,10 +48,57 @@ Dessa forma, temo uma interface que terá alguém que a implementa. E para isso 
  ```
  - Onde primeiramente crio um lista de regras das quais quero utilizar. 
  - Depois na criação da Classe ```ClassificadorFamiliar``` passo as minhas regras desejadas. 
- - Logo mais, para cada objeto do tipo ```Familia``` eu chamo o método ```Classificada``` que conforme explicado logo acima, é quem invoca a implementação de cada regra especifíca dentro da classe ```Classificador```.
+ - Logo mais, para cada objeto do tipo ```Familia``` eu chamo o método ```classifica``` que conforme explicado no diagrama a cima, é quem invoca a implementação de cada regra especifíca dentro da classe ```Classificador```.
+ 
+ Estrutura do projeto: A organização da estrutura interna do projeto, separando as responsabilidades ficou da seguinte maneira:
+* Controllers:  Camada responsável por receber as requisições e chamar a regras de negócio. Após processada a regra devolver uma resposta ao cliente.
+
+* bo: Camada da aplicação onde foi implementado todas as classes responsáveis pelas regras de negócio.
+
+* model: Camada onde coloquei classes que representam nossos modelos de negócio, como: Entidades, Classes de transferência de dados (DTO)
+
+* Repository: Camada para persistencia das informações no banco de dados.
+
+* Util: Camada reponsável por conter condifcações genericas para o projeto num todo.
+
+* Client: Esta camada na aplicação ficou reponsável por se comunicar com outros serviços como o api-contemplados. Podendo ser utilzada para comunicação com outros serviços também.
 
 # Projeto API-CONTEMPLADOS
 
+Neste projeto também utilizei Design Patterns Projetos SOLID, com o conceito de 'Desenvolvimento Orientado a Interfaces'.
+Conforme Ilustra a imagem abaixo:
+
+![grafico 02](https://user-images.githubusercontent.com/7785892/79296408-bd644e00-7eb1-11ea-8f4f-097887e233c1.jpg)
+
+Cirei a classe ```ContemplacaoRegra``` que espera no seu contrutor uma lista de regras que eu desejo utilizar para aplicar a seleção das familias contempladas.
+
+Após definido a instancia da classe ```ContemplacaoRgra``` foi preciso apenas interar entre os objetos recebidos passando-os como parâmetro pra a método ```classificar``` ficando assim a implementação:
+
+```
+  List<IRegra> regas = Arrays.asList(new SituacaoCadastral());
+
+  ContemplacaoRegra contemplacaoRegra = new ContemplacaoRegra(regas);
+
+  classificacaoDtoList.forEach(classificacaoDto -> {
+      contemplacaoRegra.classificiar(classificacaoDto);
+  });
+        
+```
+
+Primeiro crio as lista de regras que desejo utilizar passando-a depois para o contrutor da classe ```ContemplacaoRegra```.
+
+O atributo 'classificacaoDtoList' é a lista de familias já classificadas no formato DTO (data transfer object) padrão bastante conhecido hoje em dia.
+
+Dentro da classe ```ContemplacaoRegra``` o método ```classifica``` apenas faz um laço no atributo ```regras``` da classe, invocando assim quem as implementas, já que esse atributo é do Tipo List de uma Interface. É neste ponto que a classe ```SituacaoCadastral``` irá ser invocada para aplicar as regras destinadas a ela neste projeto.
+Hoje temos apenas uma regra, mais caso suja outras regras, prcecisaremos apenas criar novas ``` classes ``` que implementam a interface ```IRegra```.
+
+Estrutura do projeto: 
+A organização da estrutura interna do projeto, separando as responsabilidades ficou da seguinte maneira:
+* Controllers:  Camada responsável por receber as requisições e chamar a regras de negócio. Após processada a regra devolver uma resposta ao cliente.
+
+* bo: Camada da aplicação onde foi implementado todas as classes responsáveis pelas regras de negócio.
+
+* model: Camada onde coloquei classes que representam nossos modelos de negócio, como: Entidades, Classes de transferência de dados (DTO)
 
 # Configurações necessário para rodar Projeto
 
