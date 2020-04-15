@@ -9,12 +9,13 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 @Component
 public class ContempladoBO implements IContempladoBO {
 
     @Override
-    public List<ClassificacaoDto> classifica(List<ClassificacaoDto> classificacaoDtoList) {
+    public List<String> classifica(List<ClassificacaoDto> classificacaoDtoList) {
         List<IRegra> regas = Arrays.asList(new SituacaoCadastral());
 
         ContemplacaoRegra contemplacaoRegra = new ContemplacaoRegra(regas);
@@ -23,6 +24,6 @@ public class ContempladoBO implements IContempladoBO {
             contemplacaoRegra.classificiar(classificacaoDto);
         });
 
-        return contemplacaoRegra.getClassificacoesSelecionadas();
+        return contemplacaoRegra.getIdsFamiliasSelecionadas();
     }
 }

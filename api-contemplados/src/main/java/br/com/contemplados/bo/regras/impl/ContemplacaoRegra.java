@@ -6,27 +6,28 @@ import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 public class ContemplacaoRegra {
 
     private List<IRegra> regras;
 
-    List<ClassificacaoDto> classificacoesSelecionadas;
+    List<String> idsFamiliasSelecionadas;
 
     public ContemplacaoRegra(List<IRegra> regras){
         this.regras = regras;
-        classificacoesSelecionadas = new ArrayList<>();
+        idsFamiliasSelecionadas = new ArrayList<>();
     }
 
     public void classificiar(ClassificacaoDto classificacaoDto) {
         this.regras.forEach(regra -> {
             if(regra.executa(classificacaoDto))
-                classificacoesSelecionadas.add(classificacaoDto);
+                idsFamiliasSelecionadas.add(classificacaoDto.getId().toString());
         });
     }
 
-    public List<ClassificacaoDto> getClassificacoesSelecionadas() {
-        return classificacoesSelecionadas;
+    public List<String> getIdsFamiliasSelecionadas() {
+        return idsFamiliasSelecionadas;
     }
 }

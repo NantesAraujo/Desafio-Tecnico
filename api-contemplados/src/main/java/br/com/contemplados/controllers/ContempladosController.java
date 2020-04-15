@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class ContempladosController {
@@ -20,8 +21,8 @@ public class ContempladosController {
     @RequestMapping(value = "/contemplados", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
     public ResponseEntity<?> selecionarContemplados(@RequestBody List<ClassificacaoDto> classificacaoDtos){
         try {
-            List<ClassificacaoDto> contemplados = contempladoBO.classifica(classificacaoDtos);
-            return ResponseEntity.ok().body(contemplados);
+            List<String> idsFamiliasContempladas = contempladoBO.classifica(classificacaoDtos);
+            return ResponseEntity.ok().body(idsFamiliasContempladas);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Não foi possível filtrar familias aptas ao benefício.");
         }

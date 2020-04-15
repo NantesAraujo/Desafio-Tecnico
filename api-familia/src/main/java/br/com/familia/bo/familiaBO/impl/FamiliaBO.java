@@ -11,9 +11,12 @@ import br.com.familia.repository.FamiliaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 @Component
 public class FamiliaBO implements IFamiliaBO {
@@ -34,5 +37,21 @@ public class FamiliaBO implements IFamiliaBO {
         Collections.sort(familias);
 
         return familiaRepository.saveAll(familias);
+    }
+
+    @Override
+    public List<Familia> removerFamiliasNaoContempladas(List<Familia> familiaList, List<String> idsFamiliasContempladas) {
+        List<Familia> resultadoFinal = new ArrayList<>();
+
+        if(Objects.nonNull(idsFamiliasContempladas) && idsFamiliasContempladas.size() > 0) {
+            familiaList.forEach(familia -> {
+                if (idsFamiliasContempladas.contains(familia.getId().toString()))
+                    resultadoFinal.add(familia);
+            });
+        } else {
+            return familiaList;
+        }
+
+        return resultadoFinal;
     }
 }

@@ -1,4 +1,4 @@
-package br.com.familia.dto;
+package br.com.familia.domain.dto;
 
 import br.com.familia.domain.enumerations.EnumStatus;
 
