@@ -4,6 +4,17 @@
 
 ![proposta-desafio-tecnico](https://user-images.githubusercontent.com/7785892/79163498-958fc000-7db5-11ea-9b45-1f10126c2533.jpg)
 
+# Solução
+* Neste projeto a minha solução será conforme ilustra a imagem acima. Neste momento apenas será implementado a seguintes camadas: ```api-familia``` e ```api-contemplados```. Onde realizo neste duas apis a lógica para classificação e seleção das familias aptas a receber o benefício.
+
+* As seguintes etapas do processo ilustrado acima, fica como sugestão para uma proxima etapa, visando solucionar o problema de performace nas consultas já que existe milhões de registros na base de dados. 
+Como? Utilizando a ferramenta ```ElasticSearch``` para guardar essa massa de dados que é um banco não relacional e possua uma ótima perfomace com relação as consultas.
+Ainda no ```ElasticSeach``` poderíamos ter dois ```Índice (Correspondente a tabela no BD Relacional)```: 
+###### - Cadastro de Familias 
+###### - Familias Contemplados.
+
+Agora com esses dois indices criados, basta implementamos a ```api-consulta``` para realizar a busca destas informações no ```elasticSearch``` ganhando assim um bom tempo de resposta nas consultas para o cliente final do produto.
+
 # Projeto API-FAMILIA
 
 Este projeto foi desenvolvido utilizando um Design Patterns Projetos conhecido como SOLID, onde utilizei do conceito de 'Desenvolvimento Orientado a Interfaces'. Neste projeto temos uma classe ```ClassificadorFamiliar``` que possui como atributo uma Lista do tipo interface da seguinte maneita: ``` private List<IRegra> regras ```.
@@ -123,3 +134,42 @@ A organização da estrutura interna do projeto, separando as responsabilidades 
   node create-indice-contemplados.js
 
  ```
+ 
+# Gerando o Pacote
+Sendo um projeto Maven, execute os goals clean e install na raiz do projeto para baixar as dependências e gerar jar do projeto
+```
+ #!/api-familia
+ $ mvn clean install
+ 
+ #!/api-contemplados
+ $ mvn clean install
+```
+# Executando o Jar
+Como se trata de um projeto Spring Boot, podemos simplismente executar o jar que foi gerado na pasta target e a aplicação irá subir em um tomcat embedded.
+
+```
+#!/api-familia/target
+$ java -jar familia-0.0.1-SNAPSHOT.jar
+
+
+#!/api-contemplados/target
+$ java -jar contemplados-0.0.1-SNAPSHOT.jar
+
+```
+
+# Url dos serviços
+Configuração da porta da api se encontra no application.yml:
+```
+#!/api-familia
+  server:
+    servlet:
+      context-path: /familia-service/v1
+    port: 9126
+
+#!/api-contemplados
+    server:
+      servlet:
+        context-path: /contemplados-service/v1
+```
+   Pronto, a aplicação api-familia estará online na porta 9126.
+   Pronto, a aplicação api-contemplados estará online na porta 9127.
